@@ -1,0 +1,18 @@
+
+
+{% if pat_list %}
+
+      <div class="dropdown open">
+        <ul class="tt-menu" >
+            <li>
+                   {% for c in pat_list %}
+                        <div class="tt-suggestion tt-selectable">
+                            <a href="{% url 'clinic:patients' c.id %}">{{ c.Nom }} {{ c.Prenom }}, 33 Ans</a>
+                        </div>
+                   {% endfor %}
+            </li>
+        </ul>
+      </div>
+
+
+{% endif %}
