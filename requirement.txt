@@ -1,0 +1,15 @@
+appdirs==1.4.3
+codegen==1.0
+Django==1.11
+django-bootstrap-toolkit==2.15.0
+django-debug-toolbar==1.8
+django-registration-redux==1.6
+olefile==0.44
+packaging==16.8
+patterns==0.3
+Pillow==4.1.0
+pyparsing==2.2.0
+pytz==2017.2
+requests==2.13.0
+six==1.10.0
+sqlparse==0.2.3
