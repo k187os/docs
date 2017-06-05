@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'clinic',
     'registration',
-    #    'debug_toolbar',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
