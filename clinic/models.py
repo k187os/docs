@@ -40,10 +40,11 @@ class Consultation(models.Model):
 
 class Drug(models.Model):
     drug_nom = models.CharField(max_length=100)
-    drug_famille = models.CharField(max_length=100)
+    drug_dci = models.CharField(max_length=100)
     drug_forme = models.CharField(max_length=100)
     drug_dose = models.CharField(max_length=100)
-    drug_obs= models.CharField(max_length=100)
+    drug_cnas = models.CharField(max_length=5,null=True)
+    drug_obs= models.CharField(max_length=100, null=True)
 
     def __str__(self):
         return "{0}".format(self.drug_nom)
