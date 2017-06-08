@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from clinic.forms import PatientForm
-from clinic.models import Patient, Consultation
+from clinic.models import Patient, Consultation , Drug
 from clinic.templatetags.clinic_extras import search_p
 
 
@@ -13,8 +13,9 @@ def index(request):
     patient_list = Patient.objects.order_by('-Nom')[:3]
     cc = Consultation.objects.count()
     pc = Patient.objects.count()
+    drug = Drug.objects.count()
     context_dict = {'patientcount': Patient.objects.count()}
-    return render(request, 'clinic/index.html', {'list_patient': patient_list, 'counscount': cc ,'patientcount': pc})
+    return render(request, 'clinic/index.html', {'list_patient': patient_list, 'counscount': cc ,'patientcount': pc, 'drugcount' : drug})
 
 
 @login_required
