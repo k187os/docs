@@ -44,7 +44,7 @@ class Drug(models.Model):
     drug_forme = models.CharField(max_length=100)
     drug_dose = models.CharField(max_length=100)
     drug_cnas = models.CharField(max_length=5,null=True)
-    drug_obs= models.CharField(max_length=100, null=True)
+    drug_obs= models.CharField(max_length=250, null=True)
 
     def __str__(self):
         return "{0}".format(self.drug_nom)
