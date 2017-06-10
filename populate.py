@@ -17,7 +17,7 @@ for line in f:
     drug_forme = line[155:176]
     drug_obs = line[266:]
     if drug_nom != "":
-        c.execute('INSERT INTO clinic_drug (drug_nom, drug_dci, drug_forme, drug_dose, drug_obs, drug_cnas  )VALUES '
+        c.execute('INSERT INTO clinic_drug (drug_name, drug_dci, drug_forme, drug_dose, drug_obs, drug_cnas  )VALUES '
                   '(?, ? , ? , ? , ? , ?)', (drug_nom.strip(), drug_dci.strip(), drug_forme.strip(), drug_dose.strip(
 
         ), drug_cnas.strip(), drug_obs.strip()) )

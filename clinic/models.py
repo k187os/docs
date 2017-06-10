@@ -39,7 +39,7 @@ class Consultation(models.Model):
 
 
 class Drug(models.Model):
-    drug_nom = models.CharField(max_length=100)
+    drug_name = models.CharField(max_length=100)
     drug_dci = models.CharField(max_length=100)
     drug_forme = models.CharField(max_length=100)
     drug_dose = models.CharField(max_length=100)
@@ -47,4 +47,11 @@ class Drug(models.Model):
     drug_obs= models.CharField(max_length=250, null=True)
 
     def __str__(self):
-        return "{0}".format(self.drug_nom)
+        return "{0}".format(self.drug_name)
+
+
+class Presciption(models.Model):
+    drug_id = models.ForeignKey(Drug)
+    drug_dosage = models.CharField(max_length=200)
+    date = models.DateField(editable=True)
+    presc_time = models.DateTimeField(auto_now_add=True)

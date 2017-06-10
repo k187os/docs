@@ -105,7 +105,11 @@ def patients(request, pt_id):
     pat_dict = {}
     try:
         pat = Patient.objects.get(id=pt_id)
-        pat_dict['patient'] = pat
+        cons = Consultation.objects.filter(num_id=pt_id)
+        pat_dict = {
+            'patient': pat,
+            'consult': cons,
+        }
     except Patient.DoesNotExist:
         pass
     return render(request, 'clinic/patient.html', pat_dict)

@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
             name='Drug',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
-                ('drug_nom', models.CharField(max_length=100)),
+                ('drug_name', models.CharField(max_length=100)),
                 ('drug_famille', models.CharField(max_length=100)),
                 ('drug_forme', models.CharField(max_length=100)),
                 ('drug_dose', models.CharField(max_length=100)),
