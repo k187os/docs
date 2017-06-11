@@ -128,3 +128,28 @@ def search_patients(request):
 
 def testing(request):
     return render(request, 'clinic/test.html')
+
+
+def med_list(request):
+    if request.method == 'GET':
+        if 'searchmed' in request.GET:
+            pts = request.GET['searchmed']
+            med_list = Drug.objects.filter(Nom__istartswith=pts)
+        else:
+            med_list = Drug.objects.order_by('-id')
+    else:
+        med_list = Drug.objects.order_by('-id')
+    paginator = Paginator(med_list, 10)
+    page = request.GET.get('page')
+    try:
+        plist = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        plist = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        plist = paginator.page(paginator.num_pages)
+
+    context_dict = {'list_med': plist}
+    return render(request, 'clinic/med_list.html', context_dict)
+

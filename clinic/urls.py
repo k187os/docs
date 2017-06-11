@@ -20,6 +20,7 @@ from clinic import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^patients/$', views.patients_list, name='patients_list'),
+    url(r'^med/$', views.med_list, name='med_list'),
     url(r'^patients/(\d+)/$', views.patients, name='patients'),
     url(r'^patients/add/$', views.add_patient, name='add_patient'),
     url(r'^patients/search/$', views.search_patients, name='search_patient'),
