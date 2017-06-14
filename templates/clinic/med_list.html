@@ -18,7 +18,7 @@
             <div class="row">
               <div class="col-lg-6">
                       <form class="navbar-form-lg">
-                          <input class="form-control" placeholder="Search" type="text" id="searchpatient" name="searchpatient">
+                          <input class="form-control" placeholder="Search" type="text" id="searchmed" name="searchmed">
                       </form>
                       <div id="pats">
 
@@ -32,22 +32,25 @@
                     <tr>
                         <th><i class="icon_profile"></i> # </th>
                         <th><i class="icon_profile"></i> Médicament </th>
-                        <th><i class="icon_calendar"></i>DCI</th>
                         <th><i class="icon_mobile"></i> Forme</th>
                         <th><i class="icon_mail_alt"></i>Dose</th>
+                        <th><i class="icon_calendar"></i>DCI</th>
                         <th><i class="icon_cogs"></i>Cnas</th>
                     </tr>
                     {% if list_med %}
-                        {% for medic in list_med %}
+                    {% load el_pagination_tags %}
+                    {% paginate list_med %}
+                    {% for medic in list_med %}
                     <tr onclick="location.href='#'">
                         <td>{{ medic.pk }}</td>
-                        <td>{{ medic.name }}</td>
-                        <td>{{ medic.dci }}</td>
-                        <td>{{ medic.forme }}</td>
-                        <td>{{ medic.dose }}</td>
-                        <td>{{ medic.cnas }}</td>
+                        <td>{{ medic.drug_name }}</td>
+                        <td>{{ medic.drug_forme }}</td>
+                        <td>{{ medic.drug_dose }}</td>
+                        <td>{{ medic.drug_dci }}</td>
+                        <td>{{ medic.drug_obs }}</td>
                         <td>                        </td>
                         {% endfor %}
+
                     {% else %}
                         <td><strong>There's no patients</strong></td>
                     </tr>
@@ -55,29 +58,10 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="col-lg-12">
-                        {% if list_med.has_other_pages %}
-                          <ul class="pagination pagination-lg right">
-                            {% if list_med.has_previous %}
-                              <li><a href="?page={{ list_med.previous_page_number }}">&laquo;</a></li>
-                            {% else %}
-                              <li class="disabled"><span>&laquo;</span></li>
-                            {% endif %}
-                            {% for i in list_med.paginator.page_range %}
-                              {% if list_med.number == i %}
-                                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                              {% else %}
-                                <li><a href="?page={{ i }}">{{ i }}</a></li>
-                              {% endif %}
-                            {% endfor %}
-                            {% if list_med.has_next %}
-                              <li><a href="?page={{ list_med.next_page_number }}">&raquo;</a></li>
-                            {% else %}
-                              <li class="disabled"><span>&raquo;</span></li>
-                            {% endif %}
-                          </ul>
-                        {% endif %}
-                    </div>
+                        <div class="col-lg-12">
+                              {% show_pages %}
+                        </div>
+
         </section>
            </section>
       </section>

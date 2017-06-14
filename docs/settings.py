@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 from django.conf.locale.en import formats as en_formats
+# paginations
+from django.conf.global_settings import TEMPLATES
+
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,6 +42,7 @@ INSTALLED_APPS = (
     'clinic',
     'registration',
     'debug_toolbar',
+    'el_pagination',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,6 +85,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.request', ## For EL-pagination
             ],
         },
     },

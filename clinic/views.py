@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from clinic.forms import PatientForm
-from clinic.models import Patient, Consultation , Drug
+from clinic.models import Patient, Consultation, Drug
 from clinic.templatetags.clinic_extras import search_p
 
 
@@ -15,7 +15,8 @@ def index(request):
     pc = Patient.objects.count()
     drug = Drug.objects.count()
     context_dict = {'patientcount': Patient.objects.count()}
-    return render(request, 'clinic/index.html', {'list_patient': patient_list, 'counscount': cc ,'patientcount': pc, 'drugcount' : drug})
+    return render(request, 'clinic/index.html',
+                  {'list_patient': patient_list, 'counscount': cc, 'patientcount': pc, 'drugcount': drug})
 
 
 @login_required
@@ -134,22 +135,12 @@ def med_list(request):
     if request.method == 'GET':
         if 'searchmed' in request.GET:
             pts = request.GET['searchmed']
-            med_list = Drug.objects.filter(Nom__istartswith=pts)
+            med_list = Drug.objects.filter(drug_name__contains=pts)
         else:
-            med_list = Drug.objects.order_by('-id')
+            med_list = Drug.objects.order_by('drug_name')
     else:
         med_list = Drug.objects.order_by('-id')
-    paginator = Paginator(med_list, 10)
-    page = request.GET.get('page')
-    try:
-        plist = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        plist = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        plist = paginator.page(paginator.num_pages)
 
-    context_dict = {'list_med': plist}
+
+    context_dict = {'list_med': med_list}
     return render(request, 'clinic/med_list.html', context_dict)
-

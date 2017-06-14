@@ -14,6 +14,3 @@ def search_p(max_results=0, starts_with=''):
             pat_list = pat_list[:max_results]
 
     return pat_list
-
-
-
